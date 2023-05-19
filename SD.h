@@ -31,6 +31,7 @@ public:
 
     size_t write(char);
     size_t write(const char *, size_t);
+    size_t write(const char *);
 
     int availableForWrite();
     int read();

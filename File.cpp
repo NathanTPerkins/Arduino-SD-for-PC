@@ -21,8 +21,17 @@ size_t File::write(const char *buf, size_t n_bytes){
         return 0;
     }
     this->_size += n_bytes;
-    fprintf(this->_file, "%s", (char *)buf);
+    fprintf(this->_file, "%s", buf);
     return n_bytes;
+}
+
+size_t File::write(const char *buf){
+    if(!(this->_file)){
+        return 0;
+    }
+    this->_size += strlen(buf);
+    fprintf(this->_file, "%s", buf);
+    return strlen(buf);
 }
 
 size_t File::write(char c){
