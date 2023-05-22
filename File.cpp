@@ -121,6 +121,7 @@ uint32_t File::size()const{
 
 void File::close(){
     fclose(this->_file);
+    this->_file = NULL;
     this->_position = 0;
     this->_size = 0;
     memset(this->_filename, 0, strlen(this->_filename));
@@ -138,6 +139,7 @@ char * File::name()const{
 File::~File(){
     if(this->_file){
         fclose(this->_file);
+        this->_file = NULL;
     }
 
     delete [] this->_filename;
