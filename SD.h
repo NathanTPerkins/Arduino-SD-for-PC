@@ -28,6 +28,7 @@ public:
     File(const char *, int);
     File();
     ~File();
+    File& operator=(const File&);
 
     size_t write(char);
     size_t write(const char *, size_t);

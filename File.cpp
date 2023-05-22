@@ -26,6 +26,19 @@ File::File(const char * filename, int mode){
     this->_file = fopen(filename, &mode_c);
 }
 
+File& File::operator=(const File& f){
+    this->_filename = new char[strlen(f._filename) + 1];
+    this->_mode = new char[strlen(f._mode) + 1];
+
+    strcpy(this->_filename, f._filename);
+    strcpy(this->_mode, f._mode);
+
+    this->_position = 0;
+    this->_size = 0;
+    
+    this->_file = fopen(this->_filename, this->_mode);
+}
+
 size_t File::write(const char *buf, size_t n_bytes){
     if(!(this->_file)){
         return 0;
