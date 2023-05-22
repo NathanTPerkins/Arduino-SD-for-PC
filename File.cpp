@@ -122,10 +122,10 @@ uint32_t File::size()const{
 void File::close(){
     fclose(this->_file);
     this->_file = NULL;
+    delete [] _filename;
+    delete [] _mode;
     this->_position = 0;
     this->_size = 0;
-    memset(this->_filename, 0, strlen(this->_filename));
-    memset(this->_mode, 0, strlen(this->_mode));
 }
 
 File::operator bool()const{
@@ -136,15 +136,7 @@ char * File::name()const{
     return this->_filename;
 }
 
-File::~File(){
-    if(this->_file){
-        fclose(this->_file);
-        this->_file = NULL;
-    }
-
-    delete [] this->_filename;
-    delete [] this->_mode;
-}
+File::~File(){}
 
 
 };
