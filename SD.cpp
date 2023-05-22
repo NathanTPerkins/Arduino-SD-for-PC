@@ -34,7 +34,7 @@ namespace SDLib{
             return File(filename, mode);
         }
 
-        return;
+        return File();
     }
 
     bool SDClass::exists(const char *filename){

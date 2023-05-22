@@ -26,7 +26,7 @@ private:
     int _size;
 public:
     File(const char *, const char *);
-    File() = delete;
+    File();
     ~File();
 
     size_t write(char);
