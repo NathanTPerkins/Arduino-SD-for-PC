@@ -2,6 +2,16 @@
 
 namespace SDLib{
 
+File::File(){
+    this->_filename = new char[1];
+    this->_mode = new char[1];
+
+    this->_position = 0;
+    this->_size = 0;
+
+    this->_file = NULL;
+}
+
 File::File(const char * filename, const char * mode){
 
     this->_filename = new char[strlen(filename) + 1];
