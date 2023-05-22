@@ -9,10 +9,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define FILE_READ "r"
-#define FILE_WRITE "w"
-#define O_READ "r"
-#define O_WRITE "w"
+#define FILE_READ 'r'
+#define FILE_WRITE 'w'
+#define O_READ 'r'
+#define O_WRITE 'w'
 const uint8_t SD_CHIP_SELECT_PIN = 0;
 
 namespace SDLib{
@@ -25,7 +25,7 @@ private:
     long int _position;
     int _size;
 public:
-    File(const char *, const char *);
+    File(const char *, int);
     File();
     ~File();
 
@@ -64,7 +64,7 @@ public:
 
     void end();
 
-    File open(const char *, const char *);
+    File open(const char *, int);
     
     bool exists(const char *);
 

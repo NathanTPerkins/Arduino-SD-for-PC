@@ -29,7 +29,7 @@ namespace SDLib{
         this->_running = false;
     }
 
-    File SDClass::open(const char * filename, const char * mode){
+    File SDClass::open(const char * filename, int mode){
         if(this->_running){
             return File(filename, mode);
         }

@@ -12,18 +12,18 @@ File::File(){
     this->_file = NULL;
 }
 
-File::File(const char * filename, const char * mode){
-
+File::File(const char * filename, int mode){
+    char mode_c = ((char)mode);
     this->_filename = new char[strlen(filename) + 1];
-    this->_mode = new char[strlen(mode) + 1];
+    this->_mode = new char[strlen(&mode_c) + 1];
 
     strcpy(this->_filename, filename);
-    strcpy(this->_mode, mode);
+    strcpy(this->_mode, &mode_c);
 
     this->_position = 0;
     this->_size = 0;
 
-    this->_file = fopen(filename, mode);
+    this->_file = fopen(filename, &mode_c);
 }
 
 size_t File::write(const char *buf, size_t n_bytes){
