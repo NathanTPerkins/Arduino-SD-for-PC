@@ -35,8 +35,10 @@ File& File::operator=(const File& f){
 
     this->_position = 0;
     this->_size = 0;
-    
+
     this->_file = fopen(this->_filename, this->_mode);
+
+    return *this;
 }
 
 size_t File::write(const char *buf, size_t n_bytes){
