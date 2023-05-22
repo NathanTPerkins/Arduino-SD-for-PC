@@ -139,7 +139,7 @@ File::~File(){
     if(this->_file){
         fclose(this->_file);
     }
-    this->_file = NULL;
+
     delete [] this->_filename;
     delete [] this->_mode;
 }
