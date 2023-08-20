@@ -97,10 +97,10 @@ int File::available(){
 }
 
 void File::flush(){
-    if(this->_file){
-        rewind(this->_file);
-    }
-    this->_position = 0;
+    // if(this->_file){
+    //     rewind(this->_file);
+    // }
+    // this->_position = 0;
 }
 
 int File::read(void *buf, uint16_t size){
@@ -152,6 +152,22 @@ char * File::name()const{
 }
 
 File::~File(){}
+
+bool File::rename(const char *oldName, const char *newName){
+    return ::rename(oldName, newName);
+}
+
+bool File::isDirectory(){
+    struct stat path_stat;
+    stat(this->_filename, &path_stat);
+    return S_ISREG(path_stat.st_mode);
+}
+
+File File::openNextFile(uint8_t mode){
+    return File();
+}
+
+void File::rewindDirectory(){}
 
 
 };

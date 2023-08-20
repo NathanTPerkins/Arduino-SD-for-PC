@@ -13,6 +13,9 @@
 #define FILE_WRITE 'w'
 #define O_READ 'r'
 #define O_WRITE 'w'
+#define	O_RDONLY	0		/* +1 == FREAD */
+#define	O_WRONLY	1		/* +1 == FWRITE */
+#define	O_RDWR		2		/* +1 == FREAD|FWRITE */
 const uint8_t SD_CHIP_SELECT_PIN = 0;
 
 namespace SDLib{
@@ -46,6 +49,11 @@ public:
     void close();
     operator bool()const;
     char *name()const;
+    bool rename(const char *, const char *);
+
+    bool isDirectory();
+    File openNextFile(uint8_t mode = O_RDONLY);
+    void rewindDirectory();
 
 };
 
