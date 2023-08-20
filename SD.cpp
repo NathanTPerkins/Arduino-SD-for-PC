@@ -86,6 +86,10 @@ namespace SDLib{
         }
     }
 
+    bool SDClass::rename(const char * oldName, const char * newName){
+        return ::rename(oldName, newName);
+    }
+
     SDClass SD;
 
 };

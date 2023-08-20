@@ -83,6 +83,8 @@ public:
 
     bool rmdir(const char *);
 
+    bool rename(const char *, const char *);
+
 };
 
 extern SDClass SD;
