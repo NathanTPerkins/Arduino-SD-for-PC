@@ -23,7 +23,7 @@ File::File(const char * filename, int mode){
     this->_position = 0;
     this->_size = 0;
 
-    this->_file = fopen(filename, &mode_c);
+    this->_file = fopen(filename, this->_mode);
 }
 
 File& File::operator=(const File& f){
