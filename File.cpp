@@ -13,17 +13,34 @@ File::File(){
 }
 
 File::File(const char * filename, int mode){
-    char mode_c = ((char)mode);
-    this->_filename = new char[strlen(filename) + 1];
-    this->_mode = new char[strlen(&mode_c) + 1];
 
-    strcpy(this->_filename, filename);
-    strcpy(this->_mode, &mode_c);
+    if(mode == 'R'){
+        char mode_c = ((char)mode);
+        this->_filename = new char[strlen(filename) + 1];
+        this->_mode = new char[3];
 
-    this->_position = 0;
-    this->_size = 0;
+        strcpy(this->_filename, filename);
+        strcpy(this->_mode, "r+");
 
-    this->_file = fopen(filename, this->_mode);
+        this->_position = 0;
+        this->_size = 0;
+
+        this->_file = fopen(filename, this->_mode);
+    }else{
+        char mode_c = ((char)mode);
+        this->_filename = new char[strlen(filename) + 1];
+        this->_mode = new char[strlen(&mode_c) + 1];
+
+        strcpy(this->_filename, filename);
+        strcpy(this->_mode, &mode_c);
+
+        this->_position = 0;
+        this->_size = 0;
+
+        this->_file = fopen(filename, this->_mode);
+    }
+
+    
 }
 
 File& File::operator=(const File& f){
