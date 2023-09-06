@@ -11,6 +11,8 @@
 
 #define FILE_READ 'r'
 #define FILE_WRITE 'w'
+#define WRITE 'w'
+#define READ 'r'
 #define O_READ 'r'
 #define O_WRITE 'w'
 #define	O_RDONLY	0		/* +1 == FREAD */
