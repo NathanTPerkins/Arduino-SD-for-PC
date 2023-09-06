@@ -2,8 +2,8 @@
 
 namespace SDLib{
 
-    bool SDClass::begin(uint8_t csPin){
-        this->_dir = opendir(".");
+    bool SDClass::begin(uint8_t csPin, const char *dir){
+        this->_dir = opendir(dir);
 
         if(this->_dir == NULL){
             return false;
@@ -13,8 +13,8 @@ namespace SDLib{
         return true;
     }
 
-    bool SDClass::begin(uint32_t clock, uint8_t csPin){
-        this->_dir = opendir(".");
+    bool SDClass::begin(uint32_t clock, uint8_t csPin, const char *dir){
+        this->_dir = opendir(dir);
 
         if(this->_dir == NULL){
             return false;

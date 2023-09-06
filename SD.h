@@ -68,8 +68,8 @@ public:
 
     ~SDClass();
 
-    bool begin(uint8_t = SD_CHIP_SELECT_PIN);
-    bool begin(uint32_t, uint8_t);
+    bool begin(uint8_t = SD_CHIP_SELECT_PIN, const char * = ".");
+    bool begin(uint32_t, uint8_t, const char * = ".");
 
     void end();
 
