@@ -9,8 +9,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+
 #define FILE_READ 'r'
-#define FILE_WRITE 'R'
+#define FILE_WRITE 'a'
 #define O_READ 'r'
 #define O_WRITE 'w'
 #define	O_RDONLY	0		/* +1 == FREAD */
