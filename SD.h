@@ -23,13 +23,12 @@ namespace SDLib{
 
 class File final {
 private:
-    // FILE * _file;
+    FILE * _file;
     char * _filename;
     char * _mode;
     long int _position;
     int _size;
 public:
-    FILE * _file;
     File(const char *, int);
     File();
     ~File();
