@@ -14,6 +14,7 @@
 #define FILE_WRITE 'a'
 #define O_READ 'r'
 #define O_WRITE 'w'
+#define O_APPEND 'a'
 #define	O_RDONLY	0		/* +1 == FREAD */
 #define	O_WRONLY	1		/* +1 == FWRITE */
 #define	O_RDWR		2		/* +1 == FREAD|FWRITE */
