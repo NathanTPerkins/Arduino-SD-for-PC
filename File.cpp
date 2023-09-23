@@ -73,7 +73,7 @@ int File::availableForWrite(){
 
 int File::read(){
     if(!(this->_file)){
-        return -1;
+        return 0;
     }
     ++(this->_position);
     return fgetc(this->_file);
@@ -139,6 +139,8 @@ void File::close(){
     this->_file = NULL;
     delete [] _filename;
     delete [] _mode;
+    this->_filename = NULL;
+    this->_mode = NULL;
     this->_position = 0;
     this->_size = 0;
 }
@@ -151,7 +153,21 @@ char * File::name()const{
     return this->_filename;
 }
 
-File::~File(){}
+File::~File(){
+    if(this->_file != NULL){
+        fclose(this->_file);
+    }
+    if(this->_filename != NULL){
+        delete [] this->_filename;
+        this->_filename = NULL;
+    }
+    if(this->_mode != NULL){
+        delete [] this->_mode;
+        this->_mode = NULL;
+    }
+    this->_position = 0;
+    this->_size = 0;
+}
 
 
 };
