@@ -169,5 +169,17 @@ File::~File(){
     this->_size = 0;
 }
 
+bool File::isDirectory(){
+    struct stat path_stat;
+    stat(this->_filename, &path_stat);
+    return S_ISREG(path_stat.st_mode);
+}
+
+File File::openNextFile(uint8_t mode){
+    return File();
+}
+
+void File::rewindDirectory(){}
+
 
 };
