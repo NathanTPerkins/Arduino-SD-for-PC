@@ -13,34 +13,17 @@ File::File(){
 }
 
 File::File(const char * filename, int mode){
+    char mode_c = ((char)mode);
+    this->_filename = new char[strlen(filename) + 1];
+    this->_mode = new char[strlen(&mode_c) + 1];
 
-    if(mode == 'R'){
-        char mode_c = ((char)mode);
-        this->_filename = new char[strlen(filename) + 1];
-        this->_mode = new char[3];
+    strcpy(this->_filename, filename);
+    strcpy(this->_mode, &mode_c);
 
-        strcpy(this->_filename, filename);
-        strcpy(this->_mode, "r+");
+    this->_position = 0;
+    this->_size = 0;
 
-        this->_position = 0;
-        this->_size = 0;
-
-        this->_file = fopen(filename, this->_mode);
-    }else{
-        char mode_c = ((char)mode);
-        this->_filename = new char[strlen(filename) + 1];
-        this->_mode = new char[strlen(&mode_c) + 1];
-
-        strcpy(this->_filename, filename);
-        strcpy(this->_mode, &mode_c);
-
-        this->_position = 0;
-        this->_size = 0;
-
-        this->_file = fopen(filename, this->_mode);
-    }
-
-    
+    this->_file = fopen(filename, &mode_c);
 }
 
 File& File::operator=(const File& f){
@@ -90,7 +73,7 @@ int File::availableForWrite(){
 
 int File::read(){
     if(!(this->_file)){
-        return 0;
+        return -1;
     }
     ++(this->_position);
     return fgetc(this->_file);
@@ -114,10 +97,10 @@ int File::available(){
 }
 
 void File::flush(){
-    // if(this->_file){
-    //     rewind(this->_file);
-    // }
-    // this->_position = 0;
+    if(this->_file){
+        rewind(this->_file);
+    }
+    this->_position = 0;
 }
 
 int File::read(void *buf, uint16_t size){
@@ -169,22 +152,6 @@ char * File::name()const{
 }
 
 File::~File(){}
-
-bool File::rename(const char *oldName, const char *newName){
-    return ::rename(oldName, newName);
-}
-
-bool File::isDirectory(){
-    struct stat path_stat;
-    stat(this->_filename, &path_stat);
-    return S_ISREG(path_stat.st_mode);
-}
-
-File File::openNextFile(uint8_t mode){
-    return File();
-}
-
-void File::rewindDirectory(){}
 
 
 };
