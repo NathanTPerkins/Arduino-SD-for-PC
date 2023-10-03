@@ -97,10 +97,7 @@ int File::available(){
 }
 
 void File::flush(){
-    if(this->_file){
-        rewind(this->_file);
-    }
-    this->_position = 0;
+    fflush(this->_file);
 }
 
 int File::read(void *buf, uint16_t size){
