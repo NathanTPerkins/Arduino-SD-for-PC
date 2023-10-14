@@ -10,6 +10,8 @@ File::File(){
     this->_size = 0;
 
     this->_file = NULL;
+
+    this->_string_data = NULL;
 }
 
 File::File(const char * filename, int mode){
@@ -24,6 +26,7 @@ File::File(const char * filename, int mode){
     this->_size = 0;
 
     this->_file = fopen(filename, &mode_c);
+    this->_string_data = NULL;
 }
 
 File& File::operator=(const File& f){
@@ -32,6 +35,8 @@ File& File::operator=(const File& f){
 
     strcpy(this->_filename, f._filename);
     strcpy(this->_mode, f._mode);
+
+    this->_string_data = f._string_data;
 
     this->_position = 0;
     this->_size = 0;
@@ -125,6 +130,18 @@ uint32_t File::position()const{
         return -1;
     }
     return this->_position;
+}
+
+String readStringUntil(char terminator){
+    char c;
+    String data = "";
+    while((c == this->read()) != terminator){
+        data = data + c;
+    }
+    this->_string_data = new char[data.length() + 2];
+    memset(this->_string_data, 0, data.length() + 2);
+    strncpy(this->_string_data, data.c_str(), data.length() + 2);
+    return String(this->_string_data);
 }
 
 uint32_t File::size()const{

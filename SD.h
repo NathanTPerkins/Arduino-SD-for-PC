@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <Arduino.h>
 
 
 #define FILE_READ 'r'
@@ -27,6 +28,7 @@ private:
     FILE * _file;
     char * _filename;
     char * _mode;
+    char *_string_data;
     long int _position;
     int _size;
 public:
@@ -52,6 +54,7 @@ public:
     operator bool()const;
     char *name()const;
     bool rename(const char *, const char *);
+    String readStringUntil(char);
 
     bool isDirectory();
     File openNextFile(uint8_t mode = O_RDONLY);
