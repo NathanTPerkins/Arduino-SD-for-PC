@@ -132,7 +132,7 @@ uint32_t File::position()const{
     return this->_position;
 }
 
-String readStringUntil(char terminator){
+String File::readStringUntil(char terminator){
     char c;
     String data = "";
     while((c == this->read()) != terminator){
