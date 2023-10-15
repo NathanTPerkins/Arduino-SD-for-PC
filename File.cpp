@@ -133,15 +133,16 @@ uint32_t File::position()const{
 }
 
 String File::readStringUntil(char terminator){
-    char c;
-    String data = "";
-    while((c == this->read()) != terminator){
-        data = data + c;
+    int c;
+    String data;
+    while(this->available()){
+        c = this->read();
+        if(c == terminator){
+            break;
+        }
+        data.concat((char)c);
     }
-    this->_string_data = new char[data.length() + 2];
-    memset(this->_string_data, 0, data.length() + 2);
-    strncpy(this->_string_data, data.c_str(), data.length() + 2);
-    return String(this->_string_data);
+    return data;
 }
 
 uint32_t File::size()const{

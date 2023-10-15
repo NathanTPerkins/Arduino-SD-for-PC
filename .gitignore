@@ -2,3 +2,5 @@ test.cpp
 Makefile
 *.o
 test
+
+Arduino-Cores-for-PC/
